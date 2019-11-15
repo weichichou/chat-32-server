@@ -11,6 +11,9 @@ app
     .get('/', (req, res, next) => {
         res.send('hello world')
     })
+    .get('/message', (req, res, next)=>{
+        res.send(messages)
+    })
     .post('/message', (req, res, next)=> {
         const {message} = req.body
         messages.push(message)
