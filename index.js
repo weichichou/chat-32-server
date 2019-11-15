@@ -2,14 +2,17 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json()
 const Sse = require('json-sse')
+const cors = require('cors')
 const app = express()
 const port = 4000
+const corsMiddleware = cors()
 
 // stream is a list of clients connected
 const stream = new Sse()
 const messages = []
 
 app
+    .use(corsMiddleware)
     .use(jsonParser)
     .get('/stream', (req, res, next)=>{
         const string = JSON.stringify(messages)
