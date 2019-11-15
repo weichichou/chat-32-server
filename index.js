@@ -27,7 +27,12 @@ app
     })
     .post('/message', (req, res, next)=> {
         const {message} = req.body
+        
+        const string = JSON.stringify(message)
+
+        stream.send(string)
         messages.push(message)
+        
         res.send(message)
     })
     .listen(port, ()=>console.log(`Listening on port ${port}`))
